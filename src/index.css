@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+@font-face {
+	font-family: 'DelaGothicOne';
+	src: url('/src/assets/fonts/DelaGothicOne.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('/src/assets/fonts/Montserrat.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@theme {
+	--font-main: 'DelaGothicOne', sans-serif;
+	--font-text: 'Montserrat', sans-serif;
+	--color-main: #282425;
+	--color-secondary: #898582;
+	--color-bg: #fffcf1;
+}
+
+:root {
+	background-color: var(--color-bg);
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-text);
+	color: var(--color-main);
+	background-color: var(--color-bg);
+}
