@@ -4,8 +4,7 @@ import { SectionProps } from '../../../types'
 import Button from '../../ui/Button'
 
 const TELEGRAM_API = import.meta.env.VITE_APP_TELEGRAM_API ?? ''
-const SLAVA_ID = import.meta.env.VITE_APP_SLAVA_ID ?? ''
-const EGOR_ID = import.meta.env.VITE_APP_EGOR_ID ?? ''
+const USER_ID = import.meta.env.VITE_APP_USER_ID ?? ''
 
 const Request: FC<SectionProps> = ({ className = '', onClose }) => {
 	const [formData, setFormData] = useState({
@@ -26,7 +25,7 @@ const Request: FC<SectionProps> = ({ className = '', onClose }) => {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
 
-		if (!TELEGRAM_API || !SLAVA_ID || !EGOR_ID) {
+		if (!TELEGRAM_API || USER_ID === '') {
 			toast.error(
 				'Ошибка конфигурации. Пожалуйста, свяжитесь с администратором.'
 			)
@@ -48,12 +47,7 @@ const Request: FC<SectionProps> = ({ className = '', onClose }) => {
 				fetch(TELEGRAM_API, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ chat_id: SLAVA_ID, text }),
-				}),
-				fetch(TELEGRAM_API, {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ chat_id: EGOR_ID, text }),
+					body: JSON.stringify({ chat_id: USER_ID, text }),
 				}),
 			])
 
