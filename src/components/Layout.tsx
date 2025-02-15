@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import Contacts from './sections/Contacts'
 import Features from './sections/Features'
 import Footer from './sections/Footer'
@@ -7,8 +7,6 @@ import Header from './sections/Header'
 import Hero from './sections/Hero'
 
 const Layout: FC = () => {
-	const notify = () => toast('Wow so easy!')
-
 	return (
 		<div className='min-h-screen flex flex-col bg-[#FFFCF1]'>
 			<Header />
