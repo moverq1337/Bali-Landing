@@ -4,7 +4,9 @@ import { SectionProps } from '../../../types'
 import Button from '../../ui/Button'
 
 const TELEGRAM_API = import.meta.env.VITE_APP_TELEGRAM_API ?? ''
-const USER_ID = import.meta.env.VITE_APP_USER_ID ?? ''
+const USER_IDS = (import.meta.env.VITE_APP_USER_ID ?? '')
+	.split(',')
+	.map((id: string) => id.trim())
 
 const Request: FC<SectionProps> = ({ className = '', onClose }) => {
 	const [formData, setFormData] = useState({
@@ -25,7 +27,7 @@ const Request: FC<SectionProps> = ({ className = '', onClose }) => {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
 
-		if (!TELEGRAM_API || USER_ID === '') {
+		if (!TELEGRAM_API || USER_IDS.length === 0) {
 			toast.error(
 				'Ошибка конфигурации. Пожалуйста, свяжитесь с администратором.'
 			)
@@ -42,14 +44,15 @@ const Request: FC<SectionProps> = ({ className = '', onClose }) => {
 		`
 
 		try {
-			// Отправка сообщения Славе и Егору
-			await Promise.all([
-				fetch(TELEGRAM_API, {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ chat_id: USER_ID, text }),
-				}),
-			])
+			await Promise.all(
+				USER_IDS.map((userId: string) =>
+					fetch(TELEGRAM_API, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ chat_id: userId, text }),
+					})
+				)
+			)
 
 			setFormData({
 				name: '',
