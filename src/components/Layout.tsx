@@ -10,7 +10,7 @@ const Layout: FC = () => {
 	return (
 		<div className='min-h-screen flex flex-col bg-[#FFFCF1]'>
 			<Header />
-			<hr className='border-t border-secondary' />
+			<hr className=' border-secondary' />
 			<main className='flex-grow'>
 				<Hero />
 				<Features />

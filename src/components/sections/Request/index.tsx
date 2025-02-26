@@ -1,8 +1,9 @@
+/// <reference types="vite/client" />
+
 import { FC, useState } from 'react'
 import { toast } from 'react-toastify'
 import { SectionProps } from '../../../types'
 import Button from '../../ui/Button'
-
 const TELEGRAM_API = import.meta.env.VITE_APP_TELEGRAM_API ?? ''
 const USER_IDS = (import.meta.env.VITE_APP_USER_ID ?? '')
 	.split(',')

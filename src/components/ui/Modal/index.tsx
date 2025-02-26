@@ -12,7 +12,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
 		if (isOpen) {
 			document.body.style.overflow = 'hidden'
-			document.body.style.paddingRight = '15px' // Компенсация скроллбара
+			document.body.style.paddingRight = '15px'
 		}
 
 		return () => {
