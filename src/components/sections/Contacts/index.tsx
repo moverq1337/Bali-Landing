@@ -16,7 +16,7 @@ const Contacts: FC<SectionProps> = ({ className = '' }) => {
 						<p>+7 903 649-01-40 (Ген. Директор Сергей)</p>
 					</div>
 					<p className='text-base sm:text-lg md:text-xl lg:text-2xl font-medium'>
-						Заявка будет передана менеджеру, и он свяжется с вами в ближайшее
+						Заявка будет передана менеджеру, и он свяжется с Вами в ближайшее
 						время!
 					</p>
 				</div>

@@ -66,7 +66,7 @@ const Request: FC<SectionProps> = ({ className = '', onClose }) => {
 
 			if (onClose) onClose()
 			toast.success(
-				'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.'
+				'Заявка успешно отправлена! Мы свяжемся с Вами в ближайшее время.'
 			)
 		} catch (error) {
 			console.error('Ошибка отправки:', error)

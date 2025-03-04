@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { ToastContainer } from 'react-toastify'
+
 import Contacts from './sections/Contacts'
 import Features from './sections/Features'
 import Footer from './sections/Footer'
