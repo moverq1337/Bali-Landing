@@ -4,7 +4,7 @@ import { FC, useState } from 'react'
 import { toast } from 'react-toastify'
 import { SectionProps } from '../../../types'
 import Button from '../../ui/Button'
-const TELEGRAM_API = import.meta.env.VITE_APP_TELEGRAM_API ?? ''
+const TELEGRAM_API = `https://api.telegram.org/bot${import.meta.env.VITE_APP_TELEGRAM_API}/sendMessage`
 const USER_IDS = (import.meta.env.VITE_APP_USER_ID ?? '')
 	.split(',')
 	.map((id: string) => id.trim())
