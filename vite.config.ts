@@ -8,6 +8,6 @@ export default defineConfig({
 	server: {
 		host: true, // Слушать все доступные сетевые интерфейсы
 		port: 5173, // Стандартный порт Vite
-		allowedHosts: ['e4e9-2a0b-4140-a5cc-00-2.ngrok-free.app'],
+		allowedHosts: ['smol-bali.ru'], // Разрешенные хосты
 	},
 })

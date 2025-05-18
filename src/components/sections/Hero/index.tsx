@@ -34,7 +34,7 @@ const Hero: FC<SectionProps> = ({ className = '' }) => {
 				</a>
 				<a href='https://vk.com/bali_smol' className='flex items-center'>
 					<img src='/vk.svg' alt='vkontakte' />
-					<span>ВКотнакте </span>
+					<span>ВКонтакте </span>
 				</a>
 			</div>
 
