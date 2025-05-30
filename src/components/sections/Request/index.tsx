@@ -13,7 +13,7 @@ interface FormData {
 // Тип для props компонента
 interface RequestProps {
 	className?: string
-	onClose?: () => void // Added to fix TS2322
+	onClose?: () => void
 }
 
 // Тип для кастомного Button
@@ -27,8 +27,8 @@ const Request: React.FC<RequestProps> = ({ className, onClose }) => {
 	const [formData, setFormData] = useState<FormData>({
 		name: '',
 		phone: '',
-		adults: 1,
-		children: 0,
+		adults: 0, // Начальное значение 0, но будет отображаться как пустое
+		children: 0, // Начальное значение 0, но будет отображаться как пустое
 		destination: '',
 		wishes: '',
 	})
@@ -44,7 +44,11 @@ const Request: React.FC<RequestProps> = ({ className, onClose }) => {
 		setFormData(prev => ({
 			...prev,
 			[name]:
-				name === 'adults' || name === 'children' ? Number(value) || 0 : value,
+				name === 'adults' || name === 'children'
+					? value === '' // Если поле пустое, устанавливаем 0
+						? 0
+						: Number(value) || 0 // Преобразуем в число или 0, если некорректно
+					: value,
 		}))
 	}
 
@@ -55,13 +59,16 @@ const Request: React.FC<RequestProps> = ({ className, onClose }) => {
 		setSuccess(null)
 
 		try {
-			const response = await fetch('http://localhost:7777/submit-request', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(formData),
-			})
+			const response = await fetch(
+				'https://request.smol-bali.ru/submit-request',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(formData),
+				}
+			)
 
 			if (!response.ok) {
 				throw new Error('Ошибка при отправке заявки')
@@ -73,8 +80,8 @@ const Request: React.FC<RequestProps> = ({ className, onClose }) => {
 			setFormData({
 				name: '',
 				phone: '',
-				adults: 1,
-				children: 0,
+				adults: 0, // Сброс на 0
+				children: 0, // Сброс на 0
 				destination: '',
 				wishes: '',
 			})
@@ -129,16 +136,16 @@ const Request: React.FC<RequestProps> = ({ className, onClose }) => {
 							<input
 								type='number'
 								name='adults'
-								value={formData.adults}
+								value={formData.adults === 0 ? '' : formData.adults} // Если 0, показываем пустую строку
 								onChange={handleChange}
-								min='1'
+								min='0'
 								placeholder='Взрослых'
 								className='w-full px-6 py-3 rounded-full border border-gray-300 focus:outline-none focus:border-black transition-colors'
 							/>
 							<input
 								type='number'
 								name='children'
-								value={formData.children}
+								value={formData.children === 0 ? '' : formData.children} // Если 0, показываем пустую строку
 								onChange={handleChange}
 								min='0'
 								placeholder='Детей'
